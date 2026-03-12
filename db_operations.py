@@ -1,12 +1,16 @@
 import mysql.connector
 from mysql.connector import Error
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 def get_db_connection():
-    """Centralized connection logic."""
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="your_password",
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
         database="mydata"
     )
 
